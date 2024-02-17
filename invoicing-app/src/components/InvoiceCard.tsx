@@ -1,16 +1,28 @@
-import {View, Text} from "react-native";
-import { InvoiceDetails } from "../types/types";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { InvoiceSummary } from "../types/types";
 
-export const InvoiceCard = (invoiceDetails: InvoiceDetails) => {
-    return (
-        <View>
-            <Text>{invoiceDetails.id}</Text>
-            <Text>{invoiceDetails.clientName}</Text>
-            <Text>{invoiceDetails.dueDate}</Text>
-            <Text>{invoiceDetails.amountInPounds}</Text>
-            <Text>{invoiceDetails.status}</Text>
-        </View>
-    )
+const styles = StyleSheet.create({
+    listContainer: { marginVertical: 30, width: "100%",  }
+  });
+
+export const InvoiceCard = (invoiceDetails: InvoiceSummary) => {
+  const { id, clientName, paymentDue, total, status } = invoiceDetails;
+
+    const selectInvoice = (invoiceId: typeof id) => {
+        // navigate to invoice summary page via ID.
+    };
+
+  return (
+    <View style={styles.listContainer}>
+      <TouchableOpacity onPress={() => selectInvoice(id)}>
+        <Text>{id}</Text>
+        <Text>{clientName}</Text>
+        <Text>{paymentDue}</Text>
+        <Text>{total}</Text>
+        <Text>{status}</Text>
+      </TouchableOpacity>
+    </View>
+  );
 };
 
 export default InvoiceCard;
