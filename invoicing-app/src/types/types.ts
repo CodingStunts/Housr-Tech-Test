@@ -37,3 +37,8 @@ export type InvoiceDetails = {
   amountInPounds: string;
   status: string;
 };
+
+export enum NAVIGATION_SCREENS {
+  HOME_VIEW = "HomeView",
+  CREATE_INVOICE = "CreateInvoice"
+}

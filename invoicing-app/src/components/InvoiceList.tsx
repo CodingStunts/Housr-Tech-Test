@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { View, Text, FlatList, StyleSheet, Button } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { InvoiceCard } from "./InvoiceCard";
 import { NoInvoices } from "./NoInvoices";
 
-import { InvoiceSummary } from "../types/types";
+import { InvoiceSummary, NAVIGATION_SCREENS } from "../types/types";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,6 +24,7 @@ export const InvoiceList = () => {
   let data = require("../db/data.json");
 
   const [invoices, setInvoices] = useState<InvoiceSummary[]>([]);
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     setInvoices(data);
@@ -35,7 +37,8 @@ export const InvoiceList = () => {
   };
 
   const createInvoice = () => {
-    // Navigate to InvoiceCreation
+    // Not sure why navigate is only expecting never here? Temporary fix due to time constraints typecast to never.
+    navigate(NAVIGATION_SCREENS.CREATE_INVOICE as never);
   };
 
   return (
